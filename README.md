@@ -18,6 +18,7 @@ Cuando el usuario abre una conversación, envía un mensaje, descarga una fotogr
 
 # Fuentes consultadas: 
 https://www.ibm.com/mx-es/think/topics/rest-apis
+
 https://www.ibm.com/docs/es/integration-bus/10.0.0?topic=apis-rest
 
 ### Tarea 2
@@ -42,4 +43,12 @@ Los códigos HTTP se dividen en cinco familias según el tipo de respuesta que d
 | 3xx | Indican una redirección. El cliente debe ir a otra dirección o realizar otra acción. | `301 Moved Permanently`: el recurso fue movido de forma permanente a otra URL. |
 | 4xx | Error del cliente. Hay algún problema en la solicitud enviada. | `404 Not Found`: el recurso solicitado no fue encontrado. |
 | 5xx | Error del servidor. La solicitud puede ser válida, pero el servidor tiene un problema para procesarla. | `500 Internal Server Error`: ocurrió un error interno en el servidor. |
+
+# ¿Por qué se separan los errores 4xx de los 5xx? ¿Qué cambia entre unos y otros desde el punto de vista de quién tiene la culpa?
+
+IBM describe los códigos 4xx como errores relacionados con la solicitud del cliente y los 5xx como errores producidos del lado del servidor (IBM, 2026).
+La diferencia importante entre 4xx y 5xx es quién debe solucionar el problema.
+En un error 4xx, normalmente el problema está del lado del cliente. Por ejemplo, puede estar solicitando una dirección que no existe, enviando información incorrecta o intentando acceder sin permisos.
+
+En cambio, un error 5xx significa que el problema está del lado del servidor. El cliente hizo una petición que el servidor recibió, pero este no pudo procesarla correctamente (IBM,2026)
 
