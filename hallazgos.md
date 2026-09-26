@@ -4,13 +4,13 @@
 
 | # | Petición | Código esperado | Código obtenido | ¿Coincide? |
 |---|---|---|---|---|
-| 1 | GET /posts/1 | 200 | 200 | Sí |
-| 2 | GET /posts | 200 | 200 | Sí |
+| 1 | GET /posts/1 | 200 | 200 ok | Sí |
+| 2 | GET /posts | 200 | 200 ok | Sí |
 | 3 | GET /posts/9999 | 404 | 404 Not Found | Sí |
-| 4 | POST /posts | 201 | 201 | Sí |
-| 5 | PUT /posts/1 | 200 | 200 | Sí |
-| 6 | PATCH /posts/1 | 200 | Por completar | Por completar |
-| 7 | DELETE /posts/1 | 200 | Por completar | Por completar |
+| 4 | POST /posts | 201 | 201 ok | Sí |
+| 5 | PUT /posts/1 | 200 | 200 ok | Sí |
+| 6 | PATCH /posts/1 | 200 | 200 ok | Sí |
+| 7 | DELETE /posts/1 | 200 | 200 ok | Sí |
 
 ### Petición 1 - GET /posts/1
 
@@ -83,3 +83,47 @@ Con PUT envié solo el campo "title" y la respuesta devolvió únicamente el tí
 Con PATCH envié también solo el campo "title", pero la respuesta conservó los demás campos del recurso.
 
 Por eso, usaría PATCH para corregir un error de escritura en un solo campo, porque permite modificar solo esa parte sin reemplazar toda la información del recurso.
+
+### Petición 7 - DELETE /posts/1
+
+#### Hallazgo
+
+La petición DELETE respondió correctamente con código 200.
+
+La respuesta no devolvió información del recurso, lo que indica que la operación de eliminación fue aceptada por la API.
+
+## Tarea 13 - Pruebas automáticas
+
+Agregué tres pruebas adicionales a la petición `GET /posts/1`.
+
+### Prueba 1 - Campo title
+
+Verifica que la respuesta contenga el campo `title`.
+
+~~~javascript
+pm.test("La respuesta contiene el campo title", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property("title");
+});
+~~~
+
+### Prueba 2 - Tipo de dato del id
+
+Verifica que el campo `id` sea de tipo numérico.
+
+~~~javascript
+pm.test("El id es un número", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData.id).to.be.a("number");
+});
+~~~
+
+### Prueba 3 - Tiempo de respuesta
+
+Verifica que la respuesta tarde menos de 1000 milisegundos.
+
+~~~javascript
+pm.test("El tiempo de respuesta es menor a 1000 ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(1000);
+});
+~~~
