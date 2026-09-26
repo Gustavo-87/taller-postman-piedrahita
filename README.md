@@ -1,10 +1,12 @@
 # Taller de APIs y Postman
 
 **Estudiante:** Gustavo Adolfo Piedrahita López
+
 **Código:** 1112904503
+
 **Asignatura:** Ingeniería de Software II — Cotecnova
 
-# MARCO CONCEPTUAL
+# Marco Conceptual
 
 ### Tarea 1
 ### ¿Qué es una API-Rest?
