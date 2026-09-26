@@ -14,7 +14,6 @@ De los métodos trabajados:
 - DELETE: idempotente
 - POST: no idempotente
 
-## Tarea 9
 ## Cabeceras de la respuesta
 
 ### Content-Type
